@@ -1,0 +1,62 @@
+<!--
+ - Created by mzulubiev on 11.07.2022.
+ -->
+
+<aura:component description="WebinarPage" implements="force:appHostable">
+
+    <aura:attribute name="currentWebinar" type="Webinar__c"/>
+    <aura:attribute name="columns" type="Object[]"/>
+    <aura:attribute name="webinars" type="Webinar__c[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+        <lightning:recordEditForm aura:id="recordEditForm" objectApiName="Webinar__c" density="compact" onsuccess="{!c.onRecordSuccess}">
+            <div class="slds-grid slds-wrap slds-p-around--medium">
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Name"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Type__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Status__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Cost__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Price_per_participant__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Number_of_Participants__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Scoring__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="Start_Date__c"> </lightning:inputField>
+            </div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                <lightning:inputField fieldName="End_Date__c"> </lightning:inputField>
+            </div>
+                <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                    <lightning:button class="slds-m-top_small" type="submit" label="Create new"/>
+                </div>
+            </div>
+        </lightning:recordEditForm>
+    </div>
+
+        <div class="slds-col slds-size_1-of-1">
+            <span>
+                <lightning:card title="Webinars" iconName="standard:webinar" class="background-color:white">
+
+
+                    <lightning:datatable keyField="Id" columns="{!v.columns}" data="{!v.webinars}" onrowaction="{!c.onRowActions}"
+                             showRowNumberColumn="true" hideCheckboxColumn="true"/>
+
+
+                </lightning:card>
+            </span>
+        </div>
+
+</aura:component>

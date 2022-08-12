@@ -1,0 +1,36 @@
+<!--
+ - Created by mzulubiev on 08.07.2022.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+<!--    <aura:attribute name="nameField"-->
+<!--                    type="String"-->
+<!--                    default="Name"/>-->
+<!--    <aura:attribute name="costField"-->
+<!--                    type="Number"-->
+<!--                    default="100"/>-->
+<!--    <lightning:recordForm objectApiName="Webinar__c"-->
+<!--                          field="{!v.nameField} {!v.costField}"/>-->
+
+    <aura:attribute name="webinar" type="Webinar__c" default=""/>
+    <aura:registerEvent name="passWeb" type="c:passWebinar"/>
+
+<!--    <lightning:recordForm objectApiName="Webinar__c"-->
+<!--                          layoutType="Full"-->
+<!--                          columns="2"-->
+<!--                          onsuccess="{!c.doSave}"-->
+<!--                          >-->
+<!--&lt;!&ndash;        <lightning:inputField fieldName="Cost__c" value="100"/>&ndash;&gt;-->
+<!--        </lightning:recordForm>-->
+
+    <lightning:recordEditForm aura:id="form"
+                              objectApiName="Webinar__c"
+                              onsuccess="{!c.doSave}">
+        <lightning:inputField aura:id="cost" fieldName="Cost__c"/>
+        <lightning:inputField aura:id="status" fieldName="Approval__c"/>
+        <lightning:button variant="brand" type="submit" label="Transfer" />
+    </lightning:recordEditForm>
+
+
+</aura:component>

@@ -1,0 +1,40 @@
+<!--
+ - Created by mzulubiev on 12.07.2022.
+ -->
+
+<!-- Webinar Questionnaire -->
+<template>
+    <lightning-card title={title}>
+        <!--
+        if:true is inherited by every element in LWC so it can be used directly on it
+        -->
+        <lightning-record-edit-form object-api-name="Questionnaire__c"
+                                    onsuccess={handleSuccess}>
+            <lightning-layout multiple-rows="true" class="slds-p-around_small">
+                <lightning-layout-item size="12" flexibility="true">
+                    <lightning-messages></lightning-messages>
+                    <!--
+                    For boolean values like 'required' and 'disabled' it's enough to write attribute name.
+                    It means that this attribute is set to TRUE
+                    -->
+                    <lightning-input-field field-name="Name" required></lightning-input-field>
+                    <lightning-input-field field-name="Webinar__c" value={recordId} disabled></lightning-input-field>
+                    <lightning-input-field field-name="Attend__c"></lightning-input-field>
+                    <lightning-input-field field-name="Age__c"></lightning-input-field>
+                    <lightning-input-field field-name="Score__c"></lightning-input-field>
+                    <lightning-input-field field-name="Comment__c"></lightning-input-field>
+                    <lightning-input-field field-name="Would_you_recommend_this_webinar__c" onchange={checkValueOfPicklist}></lightning-input-field>
+                    <template if:true={whyNotRecommend}>
+                        <lightning-input-field field-name="Tell_us_why__c"></lightning-input-field>
+                    </template>
+                    <lightning-button label="Save" variant="brand" type="submit"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-record-edit-form>
+
+    </lightning-card>
+
+    <c-show-my-questionnaire get-user-id-from-parent={userId}></c-show-my-questionnaire>
+
+</template>
+

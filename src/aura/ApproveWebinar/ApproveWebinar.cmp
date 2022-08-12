@@ -1,0 +1,72 @@
+<!--
+ - Created by mzulubiev on 08.07.2022.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes"
+                access="global" controller="GetWebinars">
+
+    <aura:handler event="c:passWebinar" action="{!c.doEventInit}"/>
+    <aura:attribute name="webinar" type="Webinar__c" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="WebinarList" type="List" />
+    <aura:attribute name="showModal" type="boolean" default="false"/>
+    <aura:attribute name="description" type="String"/>
+
+    <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+        <tr class="slds-text-heading_label">
+            <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+            <th scope="col"><div class="slds-truncate" title="ApprovalStatus">ApprovalStatus</div></th>
+        </tr>
+
+            <aura:iteration items="{!v.WebinarList}" var="wbn">
+
+                <tr>
+                    <td><div class="slds-truncate" title="{!wbn.Name}">{!wbn.Name}</div></td>
+                    <td><div class="slds-truncate" title="{!wbn.Approval__c}">{!wbn.Approval__c}</div></td>
+                    <td><div class="slds-truncate" data-id="{!wbn.Id}"><lightning:button label="Approve" onclick="{!c.doApprove}"/></div></td>
+                    <td><div class="slds-truncate" data-id="{!wbn.Id}"><lightning:button label="Reject" onclick="{!c.showModel}"/></div></td>
+                </tr>
+
+                <div class="slds-truncate" data-id="{!wbn.Id}">
+                    <aura:if isTrue="{!v.showModal}">
+                        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
+                                 aria-modal="true" aria-describedby="modal-content-id-1"
+                                 class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <header class="slds-modal__header">
+                                    <lightning:buttonIcon iconName="utility:close"
+                                                          onclick="{!c.hideModel}"
+                                                          alternativeText="close"
+                                                          variant="bare-inverse"
+                                                          class="slds-modal__close"/>
+                                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                                        Rejection Reason</h2>
+                                </header>
+                                <!--Modal/Popup Box Body Starts here-->
+                                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                    <lightning:input type="text" onchange="{!c.getDescription}" label="Comments"/>
+                                </div>
+                                <!--Modal/Popup Box Footer Starts here-->
+                                <footer class="slds-modal__footer">
+                                    <lightning:button variant="neutral"
+                                                      label="Cancel"
+                                                      title="Cancel"
+                                                      onclick="{!c.hideModel}"/>
+                                    <lightning:button variant="brand"
+                                                      label="OK"
+                                                      title="OK"
+                                                      onclick="{!c.doSaveDetails}"/>
+                                </footer>
+                            </div>
+                        </section>
+                        <div class="slds-backdrop slds-backdrop_open"></div>
+                    </aura:if>
+                </div>
+
+            </aura:iteration>
+
+
+
+    </table>
+
+</aura:component>

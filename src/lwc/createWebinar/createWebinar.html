@@ -1,0 +1,20 @@
+<!--
+ - Created by mzulubiev on 13.07.2022.
+ -->
+
+<!-- Create Webinar -->
+<template>
+    <lightning-quick-action-panel header="Create Webinar">
+
+        <lightning-record-edit-form
+                object-api-name={objectApiName}>
+            <lightning-input-field field-name="Name" onchange={getName} required="true"></lightning-input-field>
+            <lightning-input-field field-name="Type__c" onchange={getType}></lightning-input-field>
+            <lightning-input-field field-name="Cost__c" onchange={getCost}></lightning-input-field>
+            <lightning-input-field field-name="Price_per_participant__c" onchange={getPricePerParticipant}></lightning-input-field>
+
+            <lightning-button variant="neutral" label="Cancel" onclick={closeWindow}></lightning-button>
+            <lightning-button variant="brand" class="slds-m-left_x-small" label="Save" onclick={handleSubmit}></lightning-button>
+        </lightning-record-edit-form>
+    </lightning-quick-action-panel>
+</template>

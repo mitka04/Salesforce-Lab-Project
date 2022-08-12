@@ -1,0 +1,10 @@
+<!--
+ - Created by mzulubiev on 08.07.2022.
+ -->
+
+<apex:page id="DisplayContact" standardController="Contact" renderAs="pdf">
+    <header>
+        Contact INFO
+    </header>
+    <apex:detail subject="{!Contact.Id}" relatedList="false"/>
+</apex:page>

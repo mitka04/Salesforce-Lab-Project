@@ -1,0 +1,27 @@
+<!--
+ - Created by mzulubiev on 13.07.2022.
+ -->
+
+<!-- Show My Questionnaire -->
+<template>
+
+
+    <lightning-card title="My Questionnaires">
+
+        <lightning-button label="Show my questionnaires" onclick={showMyQuestionnaires}></lightning-button>
+
+        <template if:true={checkForDisplayOrNot}>
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="12" flexibility="auto">
+                    <lightning-datatable if:true={questionnaires.data}
+                                         key-field="Id"
+                                         hide-checkbox-column="true"
+                                         data={questionnaires.data}
+                                         columns={columns}></lightning-datatable>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-button label="Close" onclick={hideMyQuestionnaires}></lightning-button>
+        </template>
+    </lightning-card>
+
+</template>

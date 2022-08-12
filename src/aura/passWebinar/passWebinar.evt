@@ -1,0 +1,7 @@
+<!--
+ - Created by mzulubiev on 11.07.2022.
+ -->
+
+<aura:event type="APPLICATION" description="passWebinar">
+    <aura:attribute name="webinar" type="Webinar__c"/>
+</aura:event>
